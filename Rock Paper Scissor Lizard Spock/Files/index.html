@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#7f3b9f"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-paper-scissors-Lizard-Spock</title>
+    <meta name="description" content="A simple rock, paper, scissors game made by Partha.">
+    <meta property="og:title" content="Rock-Paper-Scissors Game">
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    
+    <script type="text/javascript">
+    function Close() {
+        document.getElementById("popup_box").style.display = "none";
+    }
+
+    async function clicked(input){
+        eel.User_Input(input)
+    };
+
+    eel.expose(User_Input_return);
+    function User_Input_return(temp){
+
+        var ai_score = parseInt(temp[0]);
+        var user_score = parseInt(temp[1]);
+        var Flag_User = temp[2];
+        var ai_player = temp[3];
+        var player = temp[4];
+
+        if (Flag_User == "win"){
+            document.getElementById('Winner').innerText = "You Win!";
+        }else if (Flag_User == "lost"){
+            document.getElementById('Winner').innerText = "You Lost!";
+        }else if (Flag_User == "draw"){
+            document.getElementById('Winner').innerText = "Match Draw!";
+        }
+
+        if (player == "rock"){
+            document.getElementById('User_choice').className = "far fa-hand-rock";
+            document.getElementById("BTN1").setAttribute('title', "Rock");
+        }else if (player == "paper"){
+            document.getElementById('User_choice').className = "far fa-hand-paper";
+            document.getElementById("BTN1").setAttribute('title', "Paper");
+        } else if (player == "scissor") {
+            document.getElementById('User_choice').className = "far fa-hand-scissors";
+            document.getElementById("BTN1").setAttribute('title', "Scissors");
+        } else if (player == "lizard") {
+            document.getElementById('User_choice').className = "far fa-hand-lizard";
+            document.getElementById("BTN1").setAttribute('title', "Lizard");
+        } else if (player == "spock") {
+            document.getElementById('User_choice').className = "far fa-hand-spock";
+            document.getElementById("BTN1").setAttribute('title', "Spock");
+        }
+
+        if (ai_player == "rock") {
+            document.getElementById('Comp_choice').className = "far fa-hand-rock";
+            document.getElementById("BTN2").setAttribute('title', "Rock");
+        } else if (ai_player == "paper") {
+            document.getElementById('Comp_choice').className = "far fa-hand-paper";
+            document.getElementById("BTN2").setAttribute('title', "Paper");
+        } else if (ai_player == "scissor") {
+            document.getElementById('Comp_choice').className = "far fa-hand-scissors";
+            document.getElementById("BTN2").setAttribute('title', "Scissors");
+        } else if (ai_player == "lizard") {
+            document.getElementById('Comp_choice').className = "far fa-hand-lizard";
+            document.getElementById("BTN2").setAttribute('title', "Lizard");
+        } else if (ai_player == "spock") {
+            document.getElementById('Comp_choice').className = "far fa-hand-spock";
+            document.getElementById("BTN2").setAttribute('title', "Spock");
+        }
+
+        present_user_score = parseInt(document.getElementById('user_score').innerText);
+        present_ai_score = parseInt(document.getElementById('comp_score').innerText);
+
+        document.getElementById('comp_score').innerText = present_ai_score + ai_score;
+        document.getElementById('user_score').innerText = present_user_score + user_score;
+
+        document.getElementById("popup_box").style.display = "block";
+
+    }
+    </script>
+
+</head>
+<body>
+    <div class="main-header">
+        <div class="navbar">
+            <ul class="nav-ul">
+                <li class="first-li"> <a href="https://github.com/Prasad502/Rock_Paper_Scissor_Lizard_Spock" target="_blank"><button class="social-btn nav-btn-color nav-btn" title="Follow me on Github"><ion-icon class="nav-icon" name="logo-github"></ion-icon></button></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container container-light">
+        <header>
+            <div class="title title-light">
+                <p>Rock</p>
+                <p>Paper</p>
+                <p>Scissors</p>
+                <p>Lizard</p>
+                <p>Spock</p>
+            </div>
+            <div class="score score-light">
+                <p>Computer: <span id="comp_score">0</span></p>
+                <p>User : <span id="user_score">0</span></p>
+            </div>
+        </header>
+
+        <div class="main-part">
+            <button title="Rock" onclick="clicked('rock')"><i class="far fa-hand-rock"></i></button>
+            <button title="Paper" onclick="clicked('paper')"><i class="far fa-hand-paper"></i></button>
+            <button title="Scissors" onclick="clicked('scissor')"><i class="far fa-hand-scissors"></i></button>
+            <button title="Lizard" onclick="clicked('lizard')"><i class="far fa-hand-lizard"></i></button>
+            <button title="Spock" onclick="clicked('spock')"><i class="far fa-hand-spock"></i></button>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <p>This game is made by <b><span><a href="https://github.com/Prasad502">Prasad Labade</a></span></b> and <b><span><a href="https://github.com/Shrutika-hub">Shrutika Wagh</a></span></b></p>
+    </div>
+
+    <div id="popup_box" >
+        <!-- <img id="myImg" src=""></img> -->
+        <h1 id="Winner">Winning Status</h1>
+        <div class="result_buttons">
+            <div class="flex-item">
+                <button id="BTN1" title=""><i id="User_choice" class="far fa-hand-rock"></i></button>
+            </div>
+            <div class="flex-item">
+                <button id="BTN2" title=""><i id="Comp_choice" class="far fa-hand-paper"></i></button>
+            </div>
+        </div>
+        <div class="result_buttons1">
+            <div class="flex-item1">
+                <h2>Your Choice</h2>
+            </div>
+            <div class="flex-item2">
+                <h2>Computer's Choice</h2>
+            </div>
+        </div>
+        <div class="btns">
+            <a href="#" onclick="Close()" id="button-86">CLOSE</a>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>    
+</body>
+</html>
